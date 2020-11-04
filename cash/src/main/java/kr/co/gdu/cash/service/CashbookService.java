@@ -17,6 +17,14 @@ import kr.co.gdu.cash.vo.Cashbook;
 public class CashbookService {
 	@Autowired private CashbookMapper cashbookMapper;
 	
+	public int addCashbook(Cashbook cashbook) {
+		return cashbookMapper.insertCashbook(cashbook);
+	}
+	
+	public int removeCashbook(Cashbook cashbook) {
+		return cashbookMapper.deleteCashbook(cashbook);
+	}
+	
 	public int getselectSumCashbookPriceByInOut(String cashbookKind, int currentYear, int currentMonth) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cashbookKind", cashbookKind);
@@ -42,4 +50,5 @@ public class CashbookService {
 		
 		return cashbookMapper.selectCashbookListByDay(map);
 	}
+	
 }

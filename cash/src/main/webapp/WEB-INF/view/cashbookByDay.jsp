@@ -39,7 +39,7 @@
 					<td>${c.cashbookPrice}</td>
 					<td>${c.cashbookContent}</td>
 					<td><a href="">수정</a></td>
-					<td><a href="">삭제</a></td>
+					<td><a href="/removeCashbook">삭제</a></td>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty cashbookList}">

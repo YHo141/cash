@@ -8,20 +8,32 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.gdu.cash.service.CashbookService;
 import kr.co.gdu.cash.service.CategoryService;
-import kr.co.gdu.cash.service.IndexService;
 import kr.co.gdu.cash.vo.Cashbook;
 import kr.co.gdu.cash.vo.Category;
-import kr.co.gdu.cash.vo.Notice;
 
 @Controller
 public class CashbookController {
 	@Autowired
 	private CashbookService cashbookService;
-	@Autowired CategoryService categoryService;
+	@Autowired
+	CategoryService categoryService;
+	
+	@PostMapping("/addCashbook")
+	public String addCashbook(Cashbook cashbook) {	// 커맨드 객체
+		cashbookService.addCashbook(cashbook);
+		return "redirect:/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
+	}
+	
+	@PostMapping("/removeCashbook")
+	public String removeCashbook(Cashbook cashbook) {	// 커맨드 객체
+		cashbookService.removeCashbook(cashbook);
+		return "redirect:/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
+	}
 	
 	@GetMapping(value="cashbookByMonth")
 	public String cashbookByMonth(Model model,
@@ -50,8 +62,8 @@ public class CashbookController {
 		int lastDay = currentDay.getActualMaximum(Calendar.DATE);	
 		int firstDayOfWeek = currentDay.get(Calendar.DAY_OF_WEEK);
 		//--------------------------------------------------------------------------------------------
-		int sumOut= cashbookService.getselectSumCashbookPriceByInOut("수입", currentYear, currentMonth);
-		int sumIn =	cashbookService.getselectSumCashbookPriceByInOut("지출", currentYear, currentMonth);
+		int sumOut= cashbookService.getselectSumCashbookPriceByInOut("지출", currentYear, currentMonth);
+		int sumIn =	cashbookService.getselectSumCashbookPriceByInOut("수입", currentYear, currentMonth);
 		//--------------------------------------------------------------------------------------------
 		List<Map<String, Object>> cashList = cashbookService.getCashListByMonth(currentYear, currentMonth);
 		//--------------------------------------------------------------------------------------------
@@ -94,15 +106,9 @@ public class CashbookController {
 		List<Category> categoryList = categoryService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
 		
-		return "addCashbook";
+		return "addCashbook";	// forward
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 }
