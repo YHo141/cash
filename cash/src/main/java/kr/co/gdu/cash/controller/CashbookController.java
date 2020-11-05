@@ -23,19 +23,13 @@ public class CashbookController {
 	@Autowired
 	CategoryService categoryService;
 	
-	@PostMapping("/addCashbook")
+	@PostMapping("/admin/addCashbook")
 	public String addCashbook(Cashbook cashbook) {	// 커맨드 객체
 		cashbookService.addCashbook(cashbook);
-		return "redirect:/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
+		return "redirect:/admin/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
 	}
 	
-	@PostMapping("/removeCashbook")
-	public String removeCashbook(Cashbook cashbook) {	// 커맨드 객체
-		cashbookService.removeCashbook(cashbook);
-		return "redirect:/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
-	}
-	
-	@GetMapping(value="cashbookByMonth")
+	@GetMapping(value="/admin/cashbookByMonth")
 	public String cashbookByMonth(Model model,
 			@RequestParam(name = "currentYear", defaultValue = "-1") int currentYear,
 			@RequestParam(name = "currentMonth", defaultValue = "-1") int currentMonth) {
@@ -82,7 +76,7 @@ public class CashbookController {
 		return "cashbookByMonth";
 	}
 	
-	@GetMapping("/cashbookByDay")
+	@GetMapping("/admin/cashbookByDay")
 	public String cashbookByDay(Model model,
 			@RequestParam(name = "currentYear", required = true) int currentYear,
 			@RequestParam(name = "currentMonth", required = true) int currentMonth,
@@ -97,7 +91,7 @@ public class CashbookController {
 		return "cashbookByDay";
 	}
 	
-	@GetMapping("/addCashbook")
+	@GetMapping("/admin/addCashbook")
 	public String addCashbook(Model model,
 			@RequestParam(name = "currentYear", required = true) int currentYear,
 			@RequestParam(name = "currentMonth", required = true) int currentMonth,

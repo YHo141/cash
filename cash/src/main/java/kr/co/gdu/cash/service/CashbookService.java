@@ -21,10 +21,6 @@ public class CashbookService {
 		return cashbookMapper.insertCashbook(cashbook);
 	}
 	
-	public int removeCashbook(Cashbook cashbook) {
-		return cashbookMapper.deleteCashbook(cashbook);
-	}
-	
 	public int getselectSumCashbookPriceByInOut(String cashbookKind, int currentYear, int currentMonth) {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("cashbookKind", cashbookKind);

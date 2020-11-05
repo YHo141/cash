@@ -12,4 +12,44 @@
 		ORDER BY notice_date DESC
 		LIMIT 0, 5
 	</select>
+	<select id="selectNoticeListByPage" parameterType="java.util.Map" resultType="kr.co.gdu.cash.vo.Notice">
+		SELECT 
+			notice_id noticeId,
+			notice_title noticeTitle,
+			notice_date noticeDate
+		FROM notice
+		ORDER BY notice_date DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+	<select id="selectNoticeListCount" resultType="int">
+		SELECT COUNT(notice_id)
+		FROM notice
+	</select>
+	<select id="selectNoticeOne" parameterType="int" resultType="kr.co.gdu.cash.vo.Notice">
+		SELECT	 notice_id noticeId,
+				 notice_title noticeTitle,
+			 	 notice_content noticeContent
+		FROM notice
+		WHERE notice_id = #{noticeId}
+	</select>
+	<delete id="deleteNoticeOne" parameterType="int">
+		DELETE FROM notice
+		WHERE notice_id = #{noticeId}
+	</delete>
+	<update id="updateNoticeOne" parameterType="kr.co.gdu.cash.vo.Notice">
+		UPDATE notice 
+		SET	notice_title = #{noticeTitle},
+			notice_content = #{noticeContent}
+		WHERE notice_id = #{noticeId}
+	</update>
+	<insert id="insertNotice" parameterType="kr.co.gdu.cash.vo.Notice">
+		INSERT INTO notice(
+					notice_title,
+					notice_content,
+					notice_date )
+			VALUES(
+					#{noticeTitle},
+					#{noticeContent},
+					NOW() )
+	</insert>
 </mapper>
