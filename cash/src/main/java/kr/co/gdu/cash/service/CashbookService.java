@@ -47,4 +47,16 @@ public class CashbookService {
 		return cashbookMapper.selectCashbookListByDay(map);
 	}
 	
+	public int getDelelteCashbook(int cashbookId) {
+		return cashbookMapper.deleteCashbook(cashbookId);
+	}
+	
+	public Cashbook getCashbookOne(int cashbookId) {
+		return cashbookMapper.selectCashbookOne(cashbookId);
+	}
+	
+	// 가계부 수정
+	public int getUpdateCashbook(Cashbook cashbook) {
+		return cashbookMapper.updateCashbook(cashbook);
+	}
 }

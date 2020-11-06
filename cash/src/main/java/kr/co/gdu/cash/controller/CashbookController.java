@@ -37,14 +37,15 @@ public class CashbookController {
 		// 1. 요청분석
 		Calendar currentDay = Calendar.getInstance(); // 2020년 11월 2일
 		//currentYear 넘어오고, currentMonth 넘어오면
+		// Calendar API 사용시 : currentDay.add(Calendar.Month, -1);
 		if(currentYear !=-1 || currentMonth != -1) {
-			if(currentMonth==0) {
-				currentYear-=1;
-				currentMonth =12;
+			if(currentMonth == 0) {
+				currentYear -= 1;
+				currentMonth = 12;
 			}
-			if(currentMonth==13) {
-				currentYear+=1;
-				currentMonth=1;
+			if(currentMonth == 13) {
+				currentYear += 1;
+				currentMonth = 1;
 			}
 			currentDay.set(Calendar.YEAR, currentYear);
 			currentDay.set(Calendar.MONTH, currentMonth -1);
@@ -78,19 +79,33 @@ public class CashbookController {
 	
 	@GetMapping("/admin/cashbookByDay")
 	public String cashbookByDay(Model model,
+			@RequestParam(name = "target", defaultValue = "") String target,
 			@RequestParam(name = "currentYear", required = true) int currentYear,
 			@RequestParam(name = "currentMonth", required = true) int currentMonth,
 			@RequestParam(name = "currentDay", required = true) int currentDay) {
 		
-		List<Cashbook> cashbookList = cashbookService.getCashbookListByDay(currentYear, currentMonth, currentDay);
+		Calendar targetDay = Calendar.getInstance();
+		targetDay.set(Calendar.YEAR, currentYear);
+		targetDay.set(Calendar.MONTH, currentMonth-1);
+		targetDay.set(Calendar.DATE, currentDay);
+		if(target.equals("pre")) {
+			targetDay.add(Calendar.DATE, -1);
+		}else if(target.equals("next")) {
+			targetDay.add(Calendar.DATE, 1);
+		}
+		
+		List<Cashbook> cashbookList = cashbookService.getCashbookListByDay(targetDay.get(Calendar.YEAR), targetDay.get(Calendar.MONTH)+1, targetDay.get(Calendar.DATE));
 		
 		model.addAttribute("cashbookList", cashbookList);
+		model.addAttribute("currentYear", targetDay.get(Calendar.YEAR));
+		model.addAttribute("currentMonth", targetDay.get(Calendar.MONTH)+1);
+		model.addAttribute("currentDay", targetDay.get(Calendar.DATE));
 
-		
 		
 		return "cashbookByDay";
 	}
 	
+	// 가계부 추가
 	@GetMapping("/admin/addCashbook")
 	public String addCashbook(Model model,
 			@RequestParam(name = "currentYear", required = true) int currentYear,
@@ -103,6 +118,35 @@ public class CashbookController {
 		return "addCashbook";	// forward
 	}
 
+	// 가계부 삭제
+	@GetMapping("/admin/removeCashbook")
+	public String removeCashbook(@RequestParam(name = "cashbookId") int cashbookId) {
+		
+		cashbookService.getDelelteCashbook(cashbookId);
+		
+		return "redirect:/admin/cashbookByMonth";
+	}
 	
+	// 가계부 수정 폼
+	@GetMapping("/admin/modifyCashbook")
+	public String modifyCashbook(Model model,
+									@RequestParam(value = "cashbookId") int cashbookId) {
+		
+		Cashbook cashbook = cashbookService.getCashbookOne(cashbookId);
+		
+		List<Category> categoryList = categoryService.getCategoryList();
+		model.addAttribute("categoryList", categoryList);
+		
+		model.addAttribute("cashbook", cashbook);
+		
+		return "modifyCashbook";
+	}
+	
+	// 가계부 수정 액션
+	@PostMapping("/admin/modifyCashbook")
+	public String modifyCashbook(Cashbook cashbook) {
+		cashbookService.getUpdateCashbook(cashbook);
+		return "redirect:/admin/cashbookByMonth";
+	}
 	
 }
