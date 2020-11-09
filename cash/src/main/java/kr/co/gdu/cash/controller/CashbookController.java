@@ -120,7 +120,7 @@ public class CashbookController {
 	@PostMapping("/admin/addCashbook")
 	public String addCashbook(Cashbook cashbook) {	// 커맨드 객체
 		cashbookService.addCashbook(cashbook);
-		return "redirect:/admin/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
+		return "redirect:/admin/cashbookByMonth/-1/-1";	// response.sendRedirect -> /cashbookByMonth
 	}
 
 	// 가계부 삭제
@@ -129,7 +129,7 @@ public class CashbookController {
 		
 		cashbookService.getDelelteCashbook(cashbookId);
 		
-		return "redirect:/admin/cashbookByMonth";
+		return "redirect:/admin/cashbookByMonth/-1/-1";
 	}
 	
 	// 가계부 수정 폼
@@ -151,7 +151,7 @@ public class CashbookController {
 	@PostMapping("/admin/modifyCashbook")
 	public String modifyCashbook(Cashbook cashbook) {
 		cashbookService.getUpdateCashbook(cashbook);
-		return "redirect:/admin/cashbookByMonth";
+		return "redirect:/admin/cashbookByMonth/-1/-1";
 	}
 	
 }
