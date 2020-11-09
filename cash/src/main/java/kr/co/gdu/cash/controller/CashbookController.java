@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,17 +23,12 @@ public class CashbookController {
 	private CashbookService cashbookService;
 	@Autowired
 	CategoryService categoryService;
+
 	
-	@PostMapping("/admin/addCashbook")
-	public String addCashbook(Cashbook cashbook) {	// 커맨드 객체
-		cashbookService.addCashbook(cashbook);
-		return "redirect:/admin/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
-	}
-	
-	@GetMapping(value="/admin/cashbookByMonth")
+	@GetMapping(value = "/admin/cashbookByMonth/{currentYear}/{currentMonth}")
 	public String cashbookByMonth(Model model,
-			@RequestParam(name = "currentYear", defaultValue = "-1") int currentYear,
-			@RequestParam(name = "currentMonth", defaultValue = "-1") int currentMonth) {
+									@PathVariable(name = "currentYear") int currentYear,
+									@PathVariable(name = "currentMonth") int currentMonth) {
 		
 		// 1. 요청분석
 		Calendar currentDay = Calendar.getInstance(); // 2020년 11월 2일
@@ -77,12 +73,12 @@ public class CashbookController {
 		return "cashbookByMonth";
 	}
 	
-	@GetMapping("/admin/cashbookByDay")
+	@GetMapping("/admin/cashbookByDay/{target}/{currentYear}/{currentMonth}/{currentDay}")
 	public String cashbookByDay(Model model,
-			@RequestParam(name = "target", defaultValue = "") String target,
-			@RequestParam(name = "currentYear", required = true) int currentYear,
-			@RequestParam(name = "currentMonth", required = true) int currentMonth,
-			@RequestParam(name = "currentDay", required = true) int currentDay) {
+			@PathVariable(name = "target") String target,
+			@PathVariable(name = "currentYear", required = true) int currentYear,
+			@PathVariable(name = "currentMonth", required = true) int currentMonth,
+			@PathVariable(name = "currentDay", required = true) int currentDay) {
 		
 		Calendar targetDay = Calendar.getInstance();
 		targetDay.set(Calendar.YEAR, currentYear);
@@ -106,21 +102,30 @@ public class CashbookController {
 	}
 	
 	// 가계부 추가
-	@GetMapping("/admin/addCashbook")
+	@GetMapping("/admin/addCashbook/add/{currentYear}/{currentMonth}/{currentDay}")
 	public String addCashbook(Model model,
-			@RequestParam(name = "currentYear", required = true) int currentYear,
-			@RequestParam(name = "currentMonth", required = true) int currentMonth,
-			@RequestParam(name = "currentDay", required = true) int currentDay) {
+			@PathVariable(name = "currentYear", required = true) int currentYear,
+			@PathVariable(name = "currentMonth", required = true) int currentMonth,
+			@PathVariable(name = "currentDay", required = true) int currentDay) {
 		
 		List<Category> categoryList = categoryService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("currentYear", currentYear);
+		model.addAttribute("currentMonth", currentMonth);
+		model.addAttribute("currentDay", currentDay);
 		
 		return "addCashbook";	// forward
 	}
+	
+	@PostMapping("/admin/addCashbook")
+	public String addCashbook(Cashbook cashbook) {	// 커맨드 객체
+		cashbookService.addCashbook(cashbook);
+		return "redirect:/admin/cashbookByMonth";	// response.sendRedirect -> /cashbookByMonth
+	}
 
 	// 가계부 삭제
-	@GetMapping("/admin/removeCashbook")
-	public String removeCashbook(@RequestParam(name = "cashbookId") int cashbookId) {
+	@GetMapping("/admin/removeCashbook/remove/{cashbookId}")
+	public String removeCashbook(@PathVariable(name = "cashbookId") int cashbookId) {
 		
 		cashbookService.getDelelteCashbook(cashbookId);
 		
@@ -128,9 +133,9 @@ public class CashbookController {
 	}
 	
 	// 가계부 수정 폼
-	@GetMapping("/admin/modifyCashbook")
+	@GetMapping("/admin/modifyCashbook/modify/{cashbookId}")
 	public String modifyCashbook(Model model,
-									@RequestParam(value = "cashbookId") int cashbookId) {
+									@PathVariable(value = "cashbookId") int cashbookId) {
 		
 		Cashbook cashbook = cashbookService.getCashbookOne(cashbookId);
 		

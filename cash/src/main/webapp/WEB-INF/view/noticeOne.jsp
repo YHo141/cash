@@ -25,10 +25,10 @@
 					<td>${notice.noticeContent}</td>
 				</tr>
 		</table>
-		<a href="/admin/modifyNotice?noticeId=${notice.noticeId}">수정</a>
-		<a href="/admin/removeNotice?noticeId=${notice.noticeId}">삭제</a>
+		<a href="/admin/modifyNotice/${notice.noticeId}">수정</a>
+		<a href="/admin/removeNotice/${notice.noticeId}">삭제</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="/admin/noticeList">목록으로</a>
+		<a href="/admin/noticeList/1">목록으로</a>
 	</div>
 </body>
 </html>
