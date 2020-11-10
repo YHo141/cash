@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<div>
 		<!-- 공지 -->
@@ -30,5 +34,8 @@
 		&nbsp;&nbsp;&nbsp;
 		<a href="/admin/noticeList/1">목록으로</a>
 	</div>
+</div>
+<div class="col"></div>
+</div>
 </body>
 </html>

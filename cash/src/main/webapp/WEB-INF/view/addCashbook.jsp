@@ -5,13 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>addCashbook</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>addCashbook</h1>
 	
 	<form method="post" action="/admin/addCashbook">
-		<table border="1">
+		<table border="1" class="table-bordered">
 			<tr>
 				<td>cashbook_date</td>
 				<td>
@@ -50,7 +54,8 @@
 		</table>
 		<button type="submit">수입/지출 입력</button>
 	</form>
-	
-	
+</div>
+<div class="col"></div>
+</div>
 </body>
 </html>

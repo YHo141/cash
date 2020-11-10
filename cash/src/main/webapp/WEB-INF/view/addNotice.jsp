@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>addNotice</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>modifyNotice</h1>
 	<div>
@@ -14,15 +18,18 @@
 			<table border="1">
 					<tr>
 						<th>notice_title</th>
-						<td><input type="text" name="noticeTitle"></td>
+						<td><input type="text" name="noticeTitle" class="form-control"></td>
 					</tr>
 					<tr>
 						<th>notice_content</th>
-						<td><textarea name="noticeContent"></textarea></td>
+						<td><textarea name="noticeContent" class="form-control"></textarea></td>
 					</tr>
 			</table>
-			<button type="submit">추가하기</button>
+			<button type="submit" class="btn btn-primary">추가하기</button>
 		</form>
 	</div>
+</div>
+<div class="col"></div>
+</div>
 </body>
 </html>

@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="<c:url value="${path}/resources/css/calendar.css" />" rel="stylesheet">
 <style type="text/css">
 	.sunday {color: red}
 </style>
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h3>목록</h3>
 	
@@ -22,11 +28,11 @@
 	</div>
 	<h3>
 		<a href="/admin/cashbookByMonth/${currentYear}/${currentMonth-1}">[이전달]</a>
-		${currentYear}년 ${currentMonth} 월
+			${currentYear}년 ${currentMonth} 월
 		<a href="/admin/cashbookByMonth/${currentYear}/${currentMonth+1}">[다음달]</a>
 	</h3>
 	<div>
-		<table border="1" width="100%">
+		<table border="1" width="100%" class="small_calendar calendar-table table table-bordered">
 			<thead>
 				<tr>
 					<th>일</th>
@@ -49,9 +55,10 @@
 							<td>
 							
 								<!-- 날짜 -->
-								<div>
+								<div class="day">
 								<a href="/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}">
-									${i-(firstDayOfWeek-1)}
+								<font size="5px" color="beige">
+									${i-(firstDayOfWeek-1)}</font>
 								</a>
 								</div>
 								<!-- 지출 / 수입 목록이 있는 날짜를 cashList에서 검색 -->
@@ -82,5 +89,9 @@
 			</tbody>
 		</table>
 	</div>
+	</div>
+	<div class="col"></div>
+	</div>
+
 </body>
 </html>

@@ -5,14 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>index</h1>
-	<div>공지<a href="/admin/">more</a></div>
+	<div><h2>공지</h2><a href="/admin/">more</a></div>
 	<div>
 		<!-- 공지 -->
-		<table border="1">
+		<table border="1" class="table table-hover table-striped">
 			<thead>
 				<tr>
 					<th>notice_id</th>
@@ -31,9 +35,10 @@
 			</tbody>
 		</table>
 	</div>
+	<h2>월별 수입/지출</h2>
 	<div>
 		<!-- 수입/지출/합계 -->
-		<table border="1">
+		<table border="1" class="table table-hover table-striped">
 			<thead>
 				<tr>
 					<th>날짜</th>
@@ -46,13 +51,16 @@
 				<c:forEach var="io" items="${inOutList}">
 					<tr>
 						<td>${io["날짜"]}</td>
-						<td>${io["수입"]}</td>
-						<td>${io["지출"]}</td>
-						<td>${io["합계"]}</td>
+						<td>${io["수입"]}원</td>
+						<td>${io["지출"]}원</td>
+						<td>${io["합계"]}원</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+</div>
+<div class="col"></div>
+</div>
 </body>
 </html>

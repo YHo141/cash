@@ -5,8 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>cashbookListByDay</h1>
 		
@@ -17,7 +21,7 @@
 	</div>
 	
 	<a href="/admin/addCashbook/add/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
-	<table border="1">
+	<table border="1" class="table table-hover table-striped">
 		<thead>
 			<tr>
 				<th>cashbookId</th>
@@ -38,8 +42,8 @@
 					<td>${c.categoryName}</td>
 					<td>${c.cashbookPrice}</td>
 					<td>${c.cashbookContent}</td>
-					<td><a href="/admin/modifyCashbook/modify/${c.cashbookId}">수정</a></td>
-					<td><a href="/admin/removeCashbook/remove/${c.cashbookId}">삭제</a></td>
+					<td><a href="/admin/modifyCashbook/modify/${c.cashbookId}" class="btn btn-primary">수정</a></td>
+					<td><a href="/admin/removeCashbook/remove/${c.cashbookId}" class="btn btn-danger">삭제</a></td>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty cashbookList}">
@@ -49,5 +53,8 @@
 			</c:if>
 		</tbody>
 	</table>
+	</div>
+	<div class="col"></div>
+	</div>
 </body>
 </html>
