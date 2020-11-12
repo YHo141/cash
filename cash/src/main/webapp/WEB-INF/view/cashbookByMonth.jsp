@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="<c:url value="${path}/resources/css/calendar.css" />" rel="stylesheet">
+<link href="<c:url value="${path}/resources/css/calendar.css" />" type="text/css" media="all" rel="stylesheet">
 <style type="text/css">
 	.sunday {color: red}
 </style>
@@ -15,7 +15,7 @@
 <body>
 <div class="row">
 <div class="col"></div>
-<div class="col-6">
+<div class="col-10">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h3>목록</h3>
 	
@@ -32,7 +32,7 @@
 		<a href="/admin/cashbookByMonth/${currentYear}/${currentMonth+1}">[다음달]</a>
 	</h3>
 	<div>
-		<table border="1" width="100%" class="small_calendar calendar-table table table-bordered">
+		<table border="1" class="small_calendar calendar-table table table-bordered">
 			<thead>
 				<tr>
 					<th>일</th>

@@ -59,4 +59,16 @@ public class CashbookService {
 	public int getUpdateCashbook(Cashbook cashbook) {
 		return cashbookMapper.updateCashbook(cashbook);
 	}
+	
+	public List<Cashbook> getCashbookListByPage(int currentPage, int rowPerPage){
+		Map<String, Object> map = new HashMap<>();
+		map.put("beginRow", (currentPage - 1) * rowPerPage);
+		map.put("rowPerPage", rowPerPage);
+		
+		return cashbookMapper.selectCashbookListByPage(map);
+	}
+	
+	public List<Cashbook> getCashbookListAll(){
+		return cashbookMapper.selectCashbookListAll();
+	}
 }

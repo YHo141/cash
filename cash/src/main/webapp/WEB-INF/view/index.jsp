@@ -59,6 +59,8 @@
 			</tbody>
 		</table>
 	</div>
+	<h2>사용기술</h2>
+		자바스크립트, 모델2 방식
 </div>
 <div class="col"></div>
 </div>

@@ -135,7 +135,7 @@ public class CashbookController {
 	// 가계부 수정 폼
 	@GetMapping("/admin/modifyCashbook/modify/{cashbookId}")
 	public String modifyCashbook(Model model,
-									@PathVariable(value = "cashbookId") int cashbookId) {
+									@PathVariable(name = "cashbookId") int cashbookId) {
 		
 		Cashbook cashbook = cashbookService.getCashbookOne(cashbookId);
 		
@@ -152,6 +152,16 @@ public class CashbookController {
 	public String modifyCashbook(Cashbook cashbook) {
 		cashbookService.getUpdateCashbook(cashbook);
 		return "redirect:/admin/cashbookByMonth/-1/-1";
+	}
+	
+	@GetMapping("/admin/cashbookList/{currentPage}")
+	public String cashbookList(Model model, @PathVariable(name = "currentPage", required = true) int currentPage) {
+		
+		int rowPerPage = 20;
+		List<Cashbook> cashbookList = cashbookService.getCashbookListByPage(currentPage, rowPerPage);
+		model.addAttribute("cashbookList", cashbookList);
+		
+		return "cashbookList";
 	}
 	
 }
