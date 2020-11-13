@@ -19,7 +19,7 @@ public class MemberController {
 
 	@PostMapping("/admin/addMember")
 	public String addMember(Member member) {
-		memberService.addMember(member); // 5.
+		memberService.addMember(member);
 		return "redirect:/admin/index"; // "redirect:/admin/memberList" 추가
 	}
 }

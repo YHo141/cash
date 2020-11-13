@@ -1,11 +1,11 @@
-package kr.co.gdu.cash.restController;
+package kr.co.gdu.cash.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.co.gdu.cash.restService.MemberRestService;
+import kr.co.gdu.cash.restservice.MemberRestService;
 
 @RestController
 public class MemberRestController {
