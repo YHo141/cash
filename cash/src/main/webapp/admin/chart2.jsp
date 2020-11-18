@@ -25,14 +25,62 @@
 </body>
 <script>
 	$.ajax({
-			url:'',
-			type:'',
-			date:{},
+			url:'/totalOfMonthByYear',
+			type:'get',
+
 			success:function(data){
+				console.log(data);
 					/*
 						data(데이터가든 타입)
-					
 					*/
+					var ctx = $('#chart2');
+					var myLineChart = new Chart(ctx, {
+						
+					    type: 'line',
+					    
+					    data: {
+							labels:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+							
+							datasets:[{
+								backgroundColor:[
+					    			'rgb(255, 99, 132, 0)'
+				    			],
+								borderColor:[
+					    			'rgb(255, 99, 132, 0.5)'
+				    			],
+				    			
+								data:[data.january,
+									 data.february,
+									 data.march,
+									 data.april,
+									 data.may,
+									 data.june,
+									 data.july,
+									 data.august,
+									 data.september,
+									 data.october,
+									 data.november,
+									 data.december],
+
+									pointRadius: 5,
+									pointHoverRadius: 10
+									
+									
+								}]
+						},
+						
+					    options: {
+					        scales: {
+					            yAxes: [{
+					                stacked: true
+					            }]
+					        }
+					    }
+					});
+
+
+
+			
 				}
 		});
 </script>
