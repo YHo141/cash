@@ -31,4 +31,10 @@ public class CashStatsRestController {
 		
 		return cashStatsService.getTotalOfCategoryNameByYear(year);
 	}
+	
+	@GetMapping("/totalOutByYear")
+	public Map<String, Object> totalOutByYear(){
+		Map<String, Object> map = cashStatsService.getTotalOutByYear();
+		return map;
+	}
 }

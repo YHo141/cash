@@ -42,4 +42,16 @@
 		FROM cashbook
 		WHERE YEAR(cashbook_date) = #{year}
 	</select>
+	<select id="selectTotalOutByYear" resultType="java.util.Map">
+		SELECT YEAR(cashbook_date) '년',
+			sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) 'a지출',
+			sum(case when YEAR(cashbook_date)=2019 then cashbook_price END) 'b지출',
+			sum(case when YEAR(cashbook_date)=2020 then cashbook_price END) 'c지출'
+		FROM cashbook
+	</select>
+	
+	
+	
+	
+
 </mapper>

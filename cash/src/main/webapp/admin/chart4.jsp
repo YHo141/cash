@@ -15,7 +15,7 @@
 	<!-- chart5 -->
 	<div>
 		<canvas id="chart4"></canvas>
-	
+		년도별 지출현황
 	</div>
 	<!-- table -->
 	<div>
@@ -25,15 +25,44 @@
 </body>
 <script>
 	$.ajax({
-			url:'',
-			type:'',
-			date:{},
+			url:'/totalOutByYear',
+			type:'get',
+			
 			success:function(data){
-					/*
-						data(데이터가든 타입)
-					
-					*/
-				}
+				console.log(data);
+				var ctx = $('#chart4');
+				var chart = new Chart(ctx,{
+					type:'horizontalBar',
+					data:{
+						labels:['2018','2019','2020'],
+
+						datasets:[{
+							backgroundColor:[
+					    			'rgb(255, 99, 132, 0.5)',
+					    			'rgb(200, 199, 13, 0.5)',
+					    			'rgb(155, 255, 132, 0.5)'
+				    			],
+				    		borderColor:[
+					    			'rgb(255, 99, 132, 0.5)',
+					    			'rgb(200, 199, 13, 0.5)',
+					    			'rgb(155, 255, 132, 0.5)'
+				    			],
+				    		data:[data.a지출, data.b지출, data.c지출],
+				    		borderWidth: 1
+							}]
+						},
+						options: {
+					        scales: {
+					            xAxes: [{
+					                stacked: true
+					            }],
+					            yAxes: [{
+					                stacked: true
+					            }]
+					        }
+					    }
+				});
+			}
 		});
 </script>
 </html>

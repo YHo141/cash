@@ -9,4 +9,5 @@ public interface CashStatsMapper {
 	public Map<String, Object> selectTotalOfMonthByYear();
 	public Map<String, Object> selectTotalOutAndInByYear(int year);
 	public Map<String, Object> selectTotalOfCategoryNameByYear(int year);
+	public Map<String, Object> selectTotalOutByYear();
 }
