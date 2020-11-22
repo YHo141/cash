@@ -14,6 +14,10 @@
 	<h1>chart6</h1>
 	<!-- chart6 -->
 	<div>
+		<input type="text" id="year">
+		<button id="totalInByCategoryByYearChart" type="button">입력</button>
+	</div>
+	<div>
 		<canvas id="chart6"></canvas>
 	
 	</div>
@@ -24,16 +28,43 @@
 	
 </body>
 <script>
+$('#totalInByCategoryByYearChart').click(function(){
 	$.ajax({
-			url:'',
-			type:'',
-			date:{},
+			url:'/totalInByCategory/'+$('#year').val(),
+			type:'get',
 			success:function(data){
-					/*
-						data(데이터가든 타입)
-					
-					*/
+					console.log(data);
+					var ctx = $('#chart6');
+					var chart = new Chart(ctx,{
+							type : 'horizontalBar', 
+							data : {
+									labels : ['급여','용돈'],
+									datasets : [{
+											label : '수입',
+											backgroundColor : [
+												'rgb(255, 99, 132, 0.5)',
+												'rgb(150, 197, 166, 0.5)'
+												],
+											borderColor : [
+												'rgb(255, 99, 132, 0.5)',
+												'rgb(150, 197, 166, 0.5)'
+												],
+											data : [data.급여, data.용돈]
+										}]
+								},
+								options: {
+							        scales: {
+							            xAxes: [{
+							                stacked: true
+							            }],
+							            yAxes: [{
+							                stacked: true
+							            }]
+							        }
+							    }
+						});
 				}
 		});
+});
 </script>
 </html>

@@ -37,4 +37,35 @@ public class CashStatsRestController {
 		Map<String, Object> map = cashStatsService.getTotalOutByYear();
 		return map;
 	}
+	
+	@GetMapping("/totalInByYear")
+	public Map<String, Object> totalInByYear(){
+		Map<String, Object> map = cashStatsService.getTotalInByYear();
+		return map;
+	}
+	
+	@GetMapping("/totalInByCategory/{year}")
+	public Map<String, Object> totalInByCategory(@PathVariable(name = "year") int year){
+		return cashStatsService.getTotalInByCategory(year);
+	}
+	
+	@GetMapping("/totalSumByYear/{year}")
+	public Map<String, Object> totalSumByYear(@PathVariable(name = "year") int year){
+		return cashStatsService.getTotalSumByYear(year);
+	}
+	
+	@GetMapping("/InMaxPriceByYear")
+	public Map<String, Object> InMaxPriceByYear(){
+		return cashStatsService.getInMaxPriceByYear();
+	}
+	
+	@GetMapping("/InMinPriceByYear")
+	public Map<String, Object> InMinPriceByYear(){
+		return cashStatsService.getInMinPriceByYear();
+	}
+	
+	@GetMapping("/OutMaxPriceByYear")
+	public Map<String, Object> OutMaxPriceByYear(){
+		return cashStatsService.getOutMaxPriceByYear();
+	}
 }

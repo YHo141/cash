@@ -43,13 +43,81 @@
 		WHERE YEAR(cashbook_date) = #{year}
 	</select>
 	<select id="selectTotalOutByYear" resultType="java.util.Map">
-		SELECT YEAR(cashbook_date) '년',
+		SELECT 
 			sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) 'a지출',
 			sum(case when YEAR(cashbook_date)=2019 then cashbook_price END) 'b지출',
 			sum(case when YEAR(cashbook_date)=2020 then cashbook_price END) 'c지출'
 		FROM cashbook
+		WHERE cashbook_kind = '지출'
 	</select>
-	
+	<select id="selectTotalInByYear" resultType="java.util.Map">
+		SELECT 
+			sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) 'a수입',
+			sum(case when YEAR(cashbook_date)=2019 then cashbook_price END) 'b수입',
+			sum(case when YEAR(cashbook_date)=2020 then cashbook_price END) 'c수입'
+		FROM cashbook
+		WHERE cashbook_kind = '수입'
+	</select>
+	<select id="selectTotalInByCategory" parameterType="int" resultType="java.util.Map">
+		SELECT YEAR(cashbook_date) year, 
+			nvl(SUM(case when category_name='급여' then cashbook_price END), 0) '급여',
+			nvl(SUM(case when category_name='용돈' then cashbook_price END), 0) '용돈'
+		FROM cashbook
+		WHERE YEAR(cashbook_date) = #{year}
+	</select>
+	<select id="selectTotalSumByYear" parameterType="int" resultType="java.util.Map">
+		SELECT YEAR(cashbook_date) '년',
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=1 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=1 then cashbook_price ELSE 0 END)),0) january,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=2 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=2 then cashbook_price ELSE 0 END)),0) february,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=3 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=3 then cashbook_price ELSE 0 END)),0) march,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=4 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=4 then cashbook_price ELSE 0 END)),0) april,	
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=5 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=5 then cashbook_price ELSE 0 END)),0) may,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=6 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=6 then cashbook_price ELSE 0 END)),0) june,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=7 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=7 then cashbook_price ELSE 0 END)),0) july,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=8 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=8 then cashbook_price ELSE 0 END)),0) august,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=9 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=9 then cashbook_price ELSE 0 END)),0) september,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=10 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=10 then cashbook_price ELSE 0 END)),0) october,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=11 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=11 then cashbook_price ELSE 0 END)),0) november,
+			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=12 then cashbook_price ELSE 0 END)
+			-(case when cashbook_kind = '지출' AND MONTH(cashbook_date)=12 then cashbook_price ELSE 0 END)),0) december
+		FROM cashbook
+		WHERE YEAR(cashbook_date) = #{year}
+	</select>
+	<select id="selectInMaxPriceByYear" resultType="java.util.Map">
+		SELECT cashbook_kind,
+			nvl(MAX(case when YEAR(cashbook_date)=2018 then cashbook_price END),0) 'one',
+			nvl(MAX(case when YEAR(cashbook_date)=2019 then cashbook_price END),0) 'two',
+			nvl(MAX(case when YEAR(cashbook_date)=2020 then cashbook_price END),0) 'three'
+		FROM cashbook
+		WHERE cashbook_kind = '수입'
+	</select>
+	<select id="selectInMinPriceByYear" resultType="java.util.Map">
+		SELECT cashbook_kind,
+			nvl(MIN(case when YEAR(cashbook_date)=2018 then cashbook_price END),0) 'one',
+			nvl(MIN(case when YEAR(cashbook_date)=2019 then cashbook_price END),0) 'two',
+			nvl(MIN(case when YEAR(cashbook_date)=2020 then cashbook_price END),0) 'three'
+		FROM cashbook
+		WHERE cashbook_kind = '수입'
+	</select>
+	<select id="selectOutMaxPriceByYear" resultType="java.util.Map">
+		SELECT cashbook_kind,
+			nvl(MAX(case when YEAR(cashbook_date)=2018 then cashbook_price END),0) 'one',
+			nvl(MAX(case when YEAR(cashbook_date)=2019 then cashbook_price END),0) 'two',
+			nvl(MAX(case when YEAR(cashbook_date)=2020 then cashbook_price END),0) 'three'
+		FROM cashbook
+		WHERE cashbook_kind = '지출'
+	</select>
 	
 	
 	

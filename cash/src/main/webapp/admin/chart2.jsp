@@ -25,62 +25,37 @@
 </body>
 <script>
 	$.ajax({
-			url:'/totalOfMonthByYear',
+			url:'/OutMaxPriceByYear',
 			type:'get',
 
 			success:function(data){
 				console.log(data);
-					/*
-						data(데이터가든 타입)
-					*/
 					var ctx = $('#chart2');
 					var myLineChart = new Chart(ctx, {
 						
-					    type: 'line',
+					    type: 'polarArea',
 					    
 					    data: {
-							labels:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+							labels:['2018','2019','2020'],
 							
 							datasets:[{
 								backgroundColor:[
-					    			'rgb(255, 99, 132, 0)'
+					    			'rgb(107, 102, 255, 0.5)',
+					    			'rgb(243, 97, 166, 0.5)',
+					    			'rgb(155, 255, 132, 0.5)'
 				    			],
-								borderColor:[
-					    			'rgb(255, 99, 132, 0.5)'
+				    			borderColor:[
+					    			'rgb(107, 102, 255, 0.5)',
+					    			'rgb(243, 97, 166, 0.5)',
+					    			'rgb(155, 255, 132, 0.5)'
 				    			],
-				    			
-								data:[data.january,
-									 data.february,
-									 data.march,
-									 data.april,
-									 data.may,
-									 data.june,
-									 data.july,
-									 data.august,
-									 data.september,
-									 data.october,
-									 data.november,
-									 data.december],
+								data:[data.one, data.two, data.three]
 
-									pointRadius: 5,
-									pointHoverRadius: 10
-									
-									
 								}]
-						},
+						}
 						
-					    options: {
-					        scales: {
-					            yAxes: [{
-					                stacked: true
-					            }]
-					        }
-					    }
 					});
 
-
-
-			
 				}
 		});
 </script>

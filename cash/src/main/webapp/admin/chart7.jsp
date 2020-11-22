@@ -14,6 +14,10 @@
 	<h1>chart7</h1>
 	<!-- chart7 -->
 	<div>
+		<input type="text" id="year">
+		<button id="totalSumByYearChart" type="button">입력</button>
+	</div>
+	<div>
 		<canvas id="chart7"></canvas>
 	
 	</div>
@@ -24,16 +28,53 @@
 	
 </body>
 <script>
+$('#totalSumByYearChart').click(function(){
 	$.ajax({
-			url:'',
-			type:'',
-			date:{},
+			url:'/totalSumByYear/'+$('#year').val(),
+			type:'get',
 			success:function(data){
-					/*
-						data(데이터가든 타입)
-					
-					*/
+				console.log(data);
+				var ctx = $('#chart7');
+				var chart = new Chart(ctx,{
+					type:'line',
+					data:{
+						labels:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+
+						datasets:[{
+							label : '년도별 수입',
+							backgroundColor:[
+					    			'rgb(107, 102, 255, 0.5)'
+				    			],
+				    		borderColor:[
+					    			'rgb(107, 102, 255, 0.5)'
+				    			],
+				    		data:[data.january,
+								 data.february,
+								 data.march,
+								 data.april,
+								 data.may,
+								 data.june,
+								 data.july,
+								 data.august,
+								 data.september,
+								 data.october,
+								 data.november,
+								 data.december],
+				    		borderWidth: 1,
+				    		pointRadius: 5,
+							pointHoverRadius: 10
+							}]
+						},
+						options: {
+					        scales: {
+					            yAxes: [{
+					                stacked: true
+					            }]
+					        }
+					    }
+				});
 				}
 		});
+	});
 </script>
 </html>

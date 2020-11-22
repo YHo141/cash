@@ -37,6 +37,7 @@
 						labels:['2018','2019','2020'],
 
 						datasets:[{
+							label : '년도별 지출',
 							backgroundColor:[
 					    			'rgb(255, 99, 132, 0.5)',
 					    			'rgb(200, 199, 13, 0.5)',

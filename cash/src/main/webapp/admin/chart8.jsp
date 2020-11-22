@@ -15,7 +15,6 @@
 	<!-- chart8 -->
 	<div>
 		<canvas id="chart8"></canvas>
-	
 	</div>
 	<!-- table -->
 	<div>
@@ -25,14 +24,43 @@
 </body>
 <script>
 	$.ajax({
-			url:'',
-			type:'',
-			date:{},
+			url:'/InMaxPriceByYear',
+			type:'get',
 			success:function(data){
-					/*
-						data(데이터가든 타입)
-					
-					*/
+				console.log(data);
+				var ctx = $('#chart8');
+				var chart = new Chart(ctx,{
+					type:'horizontalBar',
+					data:{
+						labels:['2018','2019','2020'],
+
+						datasets:[{
+							label : '년도별 수입',
+							backgroundColor:[
+					    			'rgb(107, 102, 255, 0.5)',
+					    			'rgb(243, 97, 166, 0.5)',
+					    			'rgb(155, 255, 132, 0.5)'
+				    			],
+				    		borderColor:[
+					    			'rgb(107, 102, 255, 0.5)',
+					    			'rgb(243, 97, 166, 0.5)',
+					    			'rgb(155, 255, 132, 0.5)'
+				    			],
+				    		data:[data.one, data.two, data.three],
+				    		borderWidth: 1
+							}]
+						},
+						options: {
+					        scales: {
+					            xAxes: [{
+					                stacked: true
+					            }],
+					            yAxes: [{
+					                stacked: true
+					            }]
+					        }
+					    }
+				});
 				}
 		});
 </script>
