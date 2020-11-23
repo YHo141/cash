@@ -9,6 +9,9 @@
 
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-10">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>chart6</h1>
@@ -17,15 +20,17 @@
 		<input type="text" id="year">
 		<button id="totalInByCategoryByYearChart" type="button">입력</button>
 	</div>
+		년도별 카테고리별 수입
 	<div>
 		<canvas id="chart6"></canvas>
-	
 	</div>
 	<!-- table -->
 	<div>
 	
 	</div>
-	
+</div>
+<div class="col"></div>
+</div>	
 </body>
 <script>
 $('#totalInByCategoryByYearChart').click(function(){
@@ -36,7 +41,7 @@ $('#totalInByCategoryByYearChart').click(function(){
 					console.log(data);
 					var ctx = $('#chart6');
 					var chart = new Chart(ctx,{
-							type : 'horizontalBar', 
+							type : 'pie', 
 							data : {
 									labels : ['급여','용돈'],
 									datasets : [{

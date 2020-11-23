@@ -10,6 +10,9 @@
 </style>
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-10">
 <div>
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
@@ -45,7 +48,9 @@
 		</div>
 	</div>
 	
-	
+</div>
+<div class="col"></div>
+</div>	
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 자트 CDN주소 -->

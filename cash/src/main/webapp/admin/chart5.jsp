@@ -9,10 +9,14 @@
 
 </head>
 <body>
+<div class="row">
+<div class="col"></div>
+<div class="col-10">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<jsp:include page="/WEB-INF/view/inc/chartMenu.jsp"></jsp:include>
 	<h1>chart5</h1>
 	<!-- chart5 -->
+		년도별 총 수입
 	<div>
 		<canvas id="chart5"></canvas>
 	
@@ -21,7 +25,9 @@
 	<div>
 	
 	</div>
-	
+</div>
+<div class="col"></div>
+</div>	
 </body>
 <script>
 	$.ajax({
