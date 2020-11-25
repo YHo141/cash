@@ -16,7 +16,7 @@ $(document).ready(function(){
 			return;
 		}
 		$.ajax({
-			url:'/admin/idCheck',
+			url:'${pageContext.request.contextPath}/admin/idCheck',
 			type:'post',
 			data:{id:$('#id').val()},
 			success:function(data) { // data -> "yes":사용가능한ID, "no":사용중인ID
@@ -44,7 +44,7 @@ $(document).ready(function(){
 		<div>
 			PW : <input type="password" id="pw" name="pw">
 		</div>
-		<div><button type="button" id="addMember">addMember</button></div>
+		<div><button type="submit" id="addMember">addMember</button></div>
 	</form>
 </body>
 </html>

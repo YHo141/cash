@@ -10,7 +10,7 @@
 <body>
 <div class="row">
 <div class="col"></div>
-<div class="col-6">
+<div class="col-10">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>공지사항</h1>
 	<div>
