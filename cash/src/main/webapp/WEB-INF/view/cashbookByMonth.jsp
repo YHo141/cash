@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<link href="<c:url value="${path}/resources/css/calendar.css" />" type="text/css" media="all" rel="stylesheet">
+<link href="${path}/resources/css/calendar.css" type="text/css" media="all" rel="stylesheet">
 <style type="text/css">
 	.sunday {color: red}
 </style>
@@ -27,9 +27,9 @@
 		이번달 지출 합계 : ${sumOut}
 	</div>
 	<h3>
-		<a href="/admin/cashbookByMonth/${currentYear}/${currentMonth-1}">[이전달]</a>
+		<a href="${pageContext.request.contextPath}/admin/cashbookByMonth/${currentYear}/${currentMonth-1}">[이전달]</a>
 			${currentYear}년 ${currentMonth} 월
-		<a href="/admin/cashbookByMonth/${currentYear}/${currentMonth+1}">[다음달]</a>
+		<a href="${pageContext.request.contextPath}/admin/cashbookByMonth/${currentYear}/${currentMonth+1}">[다음달]</a>
 	</h3>
 	<div>
 		<table border="1" class="small_calendar calendar-table table table-bordered">
@@ -56,7 +56,7 @@
 							
 								<!-- 날짜 -->
 								<div class="day">
-								<a href="/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}">
+								<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}">
 								<font size="5px" color="beige">
 									${i-(firstDayOfWeek-1)}</font>
 								</a>

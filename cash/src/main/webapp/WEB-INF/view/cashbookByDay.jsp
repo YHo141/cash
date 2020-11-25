@@ -15,9 +15,9 @@
 	<h1>cashbookListByDay</h1>
 		
 	<div>
-		<a href="/admin/cashbookByDay/pre/${currentYear}/${currentMonth}/${currentDay}">이전</a>
+		<a href="${pageContext.request.contextPath}/admin/cashbookByDay/pre/${currentYear}/${currentMonth}/${currentDay}">이전</a>
 			${currentYear}년 ${currentMonth}월 ${currentDay}일
-		<a href="/admin/cashbookByDay/next/${currentYear}/${currentMonth}/${currentDay}">다음</a>
+		<a href="${pageContext.request.contextPath}/admin/cashbookByDay/next/${currentYear}/${currentMonth}/${currentDay}">다음</a>
 	</div>
 	
 	<a href="/admin/addCashbook/add/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
@@ -42,8 +42,8 @@
 					<td>${c.categoryName}</td>
 					<td>${c.cashbookPrice}</td>
 					<td>${c.cashbookContent}</td>
-					<td><a href="/admin/modifyCashbook/modify/${c.cashbookId}" class="btn btn-primary">수정</a></td>
-					<td><a href="/admin/removeCashbook/remove/${c.cashbookId}" class="btn btn-danger">삭제</a></td>
+					<td><a href="${pageContext.request.contextPath}/admin/modifyCashbook/modify/${c.cashbookId}" class="btn btn-primary">수정</a></td>
+					<td><a href="${pageContext.request.contextPath}/admin/removeCashbook/remove/${c.cashbookId}" class="btn btn-danger">삭제</a></td>
 				</tr>
 			</c:forEach>
 			<c:if test="${empty cashbookList}">

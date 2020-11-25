@@ -13,7 +13,7 @@
 <div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>가계부 수정</h1>
-	<form method="post" action="/admin/modifyCashbook">
+	<form method="post" action="${pageContext.request.contextPath}/admin/modifyCashbook">
 	<table border="1" class="table table-bordered">
 		<tr>
 			<td>cashbook_id</td>

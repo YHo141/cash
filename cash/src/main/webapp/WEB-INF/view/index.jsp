@@ -13,7 +13,7 @@
 <div class="col-6">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>index</h1>
-	<div><h2>공지</h2><a href="/admin/">more</a></div>
+	<div><h2>공지</h2><a href="${pageContext.request.contextPath}/admin/">more</a></div>
 	<div>
 		<!-- 공지 -->
 		<table border="1" class="table table-hover table-striped">

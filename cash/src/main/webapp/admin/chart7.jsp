@@ -35,7 +35,7 @@
 <script>
 $('#totalSumByYearChart').click(function(){
 	$.ajax({
-			url:'/totalSumByYear/'+$('#year').val(),
+			url:'${pageContext.request.contextPath}/totalSumByYear/'+$('#year').val(),
 			type:'get',
 			success:function(data){
 				console.log(data);

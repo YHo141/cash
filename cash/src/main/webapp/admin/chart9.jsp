@@ -30,7 +30,7 @@
 </body>
 <script>
 $.ajax({
-	url:'/InMinPriceByYear',
+	url:'${pageContext.request.contextPath}/InMinPriceByYear',
 	type:'get',
 	success:function(data){
 		console.log(data);

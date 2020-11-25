@@ -21,7 +21,7 @@
 			<input type="text" id="year">
 			<button id="totalOfCategoryNameByYearChart" type="button">입력</button>
 		</div>
-			년도별 카테고리 수입
+			년도별 카테고리 지출
 		<div>
 			<canvas id="chart3"></canvas>
 		
@@ -38,7 +38,7 @@
 <script>
 	$('#totalOfCategoryNameByYearChart').click(function(){
 		$.ajax({
-				url:'/totalOfCategoryNameByYear/'+$('#year').val(),
+				url:'${pageContext.request.contextPath}/totalOfCategoryNameByYear/'+$('#year').val(),
 				type:'get',
 				date:{},
 				success:function(data){

@@ -12,7 +12,7 @@
 <div class="col-10">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>cashbookList</h1>
-	<a href="/admin/cashbookListExcel">[전체 cashbookList를 엑셀 파일로 다운로드]</a>
+	<a href="${pageContext.request.contextPath}/admin/cashbookListExcel">[전체 cashbookList를 엑셀 파일로 다운로드]</a>
 	<table border="1">
 		<thead>
 			<tr>

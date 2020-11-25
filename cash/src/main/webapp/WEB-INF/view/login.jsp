@@ -35,7 +35,7 @@
 		</table>
 	
 	<h1>로그인</h1>
-	<form method="post" action="/login" class="was-validated">
+	<form method="post" action="${pageContext.request.contextPath}/login" class="was-validated">
 		<div class="form-group">
 			<div>
 				ID<input type="text" name="id" class="form-control" placeholder="아이디를 입력해주세요" required>

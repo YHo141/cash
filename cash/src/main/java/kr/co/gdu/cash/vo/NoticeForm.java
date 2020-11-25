@@ -2,14 +2,15 @@ package kr.co.gdu.cash.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
-public class Notice {
+public class NoticeForm {
 	private int noticeId;
 	private String noticeTitle;
 	private String noticeContent;
 	private String noticeDate;
-	private List<Noticefile> noticefile;
-	private List<Comment> commentList;
+	private List<MultipartFile> noticefile;
 }

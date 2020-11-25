@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.gdu.cash.restmapper.CashStatsMapper">
+	<!-- 2019년도 월별 지출 -->
 	<select id="selectTotalOfMonthByYear" resultType="java.util.Map">
 		SELECT 
 		YEAR(cashbook_date) year,
@@ -23,6 +24,7 @@
 		AND cashbook_kind = "지출"
 		GROUP BY Year(cashbook_date)
 	</select>
+	<!-- 년도별 수입/지출 -->
 	<select id="selectTotalOutAndInByYear" parameterType="int" resultType="java.util.Map">
 		SELECT YEAR(cashbook_date) '년',
 			sum(case when cashbook_kind='수입' then cashbook_price END) '수입',
@@ -31,6 +33,7 @@
 		WHERE YEAR(cashbook_date) = #{year}
 		GROUP BY Year(cashbook_date)
 	</select>
+	<!-- 년도 카테고리별 지출 -->
 	<select id="selectTotalOfCategoryNameByYear" parameterType="int" resultType="java.util.Map">
 		SELECT YEAR(cashbook_date) year,
 			nvl(SUM(case when category_name='관광' then cashbook_price END), 0)'관광',
@@ -42,6 +45,7 @@
 		FROM cashbook
 		WHERE YEAR(cashbook_date) = #{year}
 	</select>
+	<!-- 년도별 총 지출 -->
 	<select id="selectTotalOutByYear" resultType="java.util.Map">
 		SELECT 
 			sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) 'a지출',
@@ -50,6 +54,7 @@
 		FROM cashbook
 		WHERE cashbook_kind = '지출'
 	</select>
+	<!-- 년도별 총 수입 -->
 	<select id="selectTotalInByYear" resultType="java.util.Map">
 		SELECT 
 			sum(case when YEAR(cashbook_date)=2018 then cashbook_price END) 'a수입',
@@ -58,6 +63,7 @@
 		FROM cashbook
 		WHERE cashbook_kind = '수입'
 	</select>
+	<!-- 카테고리별 수입 -->
 	<select id="selectTotalInByCategory" parameterType="int" resultType="java.util.Map">
 		SELECT YEAR(cashbook_date) year, 
 			nvl(SUM(case when category_name='급여' then cashbook_price END), 0) '급여',
@@ -65,6 +71,7 @@
 		FROM cashbook
 		WHERE YEAR(cashbook_date) = #{year}
 	</select>
+	<!-- 월별 이익 -->
 	<select id="selectTotalSumByYear" parameterType="int" resultType="java.util.Map">
 		SELECT YEAR(cashbook_date) '년',
 			nvl(SUM((case when cashbook_kind = '수입'AND MONTH(cashbook_date)=1 then cashbook_price ELSE 0 END)
@@ -94,6 +101,7 @@
 		FROM cashbook
 		WHERE YEAR(cashbook_date) = #{year}
 	</select>
+	<!-- 년도별 최고 수입 -->
 	<select id="selectInMaxPriceByYear" resultType="java.util.Map">
 		SELECT cashbook_kind,
 			nvl(MAX(case when YEAR(cashbook_date)=2018 then cashbook_price END),0) 'one',
@@ -102,6 +110,7 @@
 		FROM cashbook
 		WHERE cashbook_kind = '수입'
 	</select>
+	<!-- 년도별 최저 수입 -->
 	<select id="selectInMinPriceByYear" resultType="java.util.Map">
 		SELECT cashbook_kind,
 			nvl(MIN(case when YEAR(cashbook_date)=2018 then cashbook_price END),0) 'one',
@@ -110,6 +119,7 @@
 		FROM cashbook
 		WHERE cashbook_kind = '수입'
 	</select>
+	<!-- 년도별 최고 지출 -->
 	<select id="selectOutMaxPriceByYear" resultType="java.util.Map">
 		SELECT cashbook_kind,
 			nvl(MAX(case when YEAR(cashbook_date)=2018 then cashbook_price END),0) 'one',
@@ -118,8 +128,4 @@
 		FROM cashbook
 		WHERE cashbook_kind = '지출'
 	</select>
-	
-	
-	
-
 </mapper>

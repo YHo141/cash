@@ -31,7 +31,7 @@
 </body>
 <script>
 	$.ajax({
-			url:'/OutMaxPriceByYear',
+			url:'${pageContext.request.contextPath}/OutMaxPriceByYear',
 			type:'get',
 
 			success:function(data){

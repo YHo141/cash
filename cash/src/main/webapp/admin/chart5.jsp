@@ -31,7 +31,7 @@
 </body>
 <script>
 	$.ajax({
-			url:'/totalInByYear',
+			url:'${pageContext.request.contextPath}/totalInByYear',
 			type:'get',
 			
 			success:function(data){

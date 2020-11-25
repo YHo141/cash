@@ -15,7 +15,7 @@
 	<h1>공지사항</h1>
 	<div>
 		<!-- 공지 -->
-		<a href="/admin/addNotice">공지추가</a>
+		<a href="${pageContext.request.contextPath}/admin/addNotice">공지추가</a>
 		<table border="1" class="table table-hover table-striped">
 			<thead>
 				<tr>
@@ -31,25 +31,25 @@
 						<td>${n.noticeId}</td>
 						<td>${n.noticeTitle}</td>
 						<td>${n.noticeDate}</td>
-						<td><a href="/admin/noticeOne/${n.noticeId}">상세보기</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/noticeOne/${n.noticeId}">상세보기</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 			
 		</table>
 			<c:if test="${currentPage != 1}">
-				<a href="/admin/noticeList/1">처음으로</a>
+				<a href="${pageContext.request.contextPath}/admin/noticeList/1">처음으로</a>
 			</c:if>
 			&nbsp;
 			<c:if test="${currentPage > 1}">
-				<a href="/admin/noticeList/${currentPage - 1}">이전</a>
+				<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage - 1}">이전</a>
 			</c:if>
 			&nbsp;&nbsp;
 			<c:if test="${currentPage < lastPage}">
-				<a href="/admin/noticeList/${currentPage + 1}">다음</a>
+				<a href="${pageContext.request.contextPath}/admin/noticeList/${currentPage + 1}">다음</a>
 			</c:if>
 			<c:if test="${currentPage != lastPage}">
-				<a href="/admin/noticeList/${lastPage}">마지막으로</a>
+				<a href="${pageContext.request.contextPath}/admin/noticeList/${lastPage}">마지막으로</a>
 			</c:if>
 
 			<div>현재 페이지 : ${currentPage}</div>

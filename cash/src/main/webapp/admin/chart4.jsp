@@ -30,7 +30,7 @@
 </body>
 <script>
 	$.ajax({
-			url:'/totalOutByYear',
+			url:'${pageContext.request.contextPath}/totalOutByYear',
 			type:'get',
 			
 			success:function(data){

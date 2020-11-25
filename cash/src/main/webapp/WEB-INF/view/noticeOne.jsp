@@ -28,11 +28,42 @@
 					<th>notice_content</th>
 					<td>${notice.noticeContent}</td>
 				</tr>
+				<tr>
+					<th>noticefile_list</th>
+					<c:forEach var="n" items="${notice.noticefile}">
+							<td>${n.noticefileName}</td>
+					</c:forEach>
+				</tr>
 		</table>
-		<a href="/admin/modifyNotice/${notice.noticeId}">수정</a>
-		<a href="/admin/removeNotice/${notice.noticeId}">삭제</a>
+		<a href="${pageContext.request.contextPath}/admin/modifyNotice/${notice.noticeId}">수정</a>
+		<a href="${pageContext.request.contextPath}/admin/removeNotice/${notice.noticeId}">삭제</a>
 		&nbsp;&nbsp;&nbsp;
-		<a href="/admin/noticeList/1">목록으로</a>
+		<a href="${pageContext.request.contextPath}/admin/noticeList/1">목록으로</a>
+	</div>
+	<br>
+	<div>
+		<table border="1">
+			<tr>
+				<th>comment_id</th>
+				<th>comment_content</th>
+				<th>comment_date</th>
+				<th>삭제</th>
+			</tr>
+			<c:forEach var="nc" items="${notice.commentList}">
+				<tr>
+					<td>${nc.commentId}</td>
+					<td>${nc.commentContent}</td>
+					<td>${nc.commentDate}</td>
+					<td><a href="${pageContext.request.contextPath}/admin/removeComment/${nc.noticeId}/${nc.commentId}">삭제</a></td>
+				</tr>
+			</c:forEach>
+			
+		</table>
+		<form method="post" action="${pageContext.request.contextPath}/admin/addComment">
+			<input type="hidden" name="noticeId" value="${notice.noticeId}">
+			<textarea name="commentContent" rows="3" cols="50"></textarea>
+			<button type="submit">댓글입력</button>
+		</form>
 	</div>
 </div>
 <div class="col"></div>

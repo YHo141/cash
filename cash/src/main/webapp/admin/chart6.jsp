@@ -35,7 +35,7 @@
 <script>
 $('#totalInByCategoryByYearChart').click(function(){
 	$.ajax({
-			url:'/totalInByCategory/'+$('#year').val(),
+			url:'${pageContext.request.contextPath}/totalInByCategory/'+$('#year').val(),
 			type:'get',
 			success:function(data){
 					console.log(data);

@@ -14,7 +14,7 @@
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<h1>modifyNotice</h1>
 	<div>
-		<form method="post" action="/admin/modifyNotice/${notice.noticeId}">
+		<form method="post" action="${pageContext.request.contextPath}/admin/modifyNotice/${notice.noticeId}">
 			<table border="1">
 	
 					<tr>

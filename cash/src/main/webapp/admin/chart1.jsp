@@ -59,7 +59,7 @@
 
 	$('#totalOutAndInByYearChart').click(function(){
 		$.ajax({
-			url: '/totalOutAndInByYear/'+$('#year').val(),
+			url: '${pageContext.request.contextPath}/totalOutAndInByYear/'+$('#year').val(),
 			type: 'get',
 			success: function(data){
 				let pieCtx = $('#pieChart');
@@ -102,7 +102,7 @@
 		
 		$.ajax({
 			
-			url:'/totalOfMonthByYear',
+			url:'${pageContext.request.contextPath}/totalOfMonthByYear',
 			
 			type:'get',
 			
@@ -181,7 +181,7 @@
 	$('#totalOfMonthByYearTable').click(function(){
 		//	$('#totalOfMonthByYearTableResult').html('totalOfMonthByYearTableResult'); test
 		$.ajax({
-			url:'/totalOfMonthByYear',
+			url:'${pageContext.request.contextPath}/totalOfMonthByYear',
 			type:'get',
 			success: function(data){
 				console.log(data);
