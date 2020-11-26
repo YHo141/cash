@@ -78,8 +78,41 @@ public class NoticeService {
 	}
 	
 	// 공지사항 수정
-	public int updateNoticeOne(Notice notice) {
-		return noticeMapper.updateNoticeOne(notice);
+	public void updateNoticeOne(NoticeForm noticeForm) {
+		Notice notice = new Notice();
+		notice.setNoticeId(noticeForm.getNoticeId());
+		notice.setNoticeTitle(noticeForm.getNoticeTitle());
+		notice.setNoticeContent(noticeForm.getNoticeContent());
+		noticeMapper.updateNoticeOne(notice);
+		
+		
+		List<Noticefile> noticefile = null;
+		if(noticeForm.getNoticefile()!=null) {
+			noticefile = new ArrayList<Noticefile>();
+			for(MultipartFile mf : noticeForm.getNoticefile()) {
+				Noticefile nf = new Noticefile();
+				nf.setNoticeId(notice.getNoticeId());
+				String filename = UUID.randomUUID().toString().replace("-", "");
+				int p = mf.getOriginalFilename().lastIndexOf(".");
+				String ext = mf.getOriginalFilename().substring(p);
+				nf.setNoticefileName(filename+ext);
+				nf.setNoticefileType(mf.getContentType());
+				nf.setNoticefileSize(mf.getSize());
+				noticefile.add(nf);
+				try {
+					mf.transferTo(new File(PATH+filename+ext));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		
+		if(noticefile != null) {
+			for(Noticefile nf : noticefile) {
+				noticefileMapper.insertNoticefile(nf);
+			}
+		}
 	}
 	
 	// 공지사항 추가

@@ -20,7 +20,7 @@
 		<a href="${pageContext.request.contextPath}/admin/cashbookByDay/next/${currentYear}/${currentMonth}/${currentDay}">다음</a>
 	</div>
 	
-	<a href="/admin/addCashbook/add/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
+	<a href="${pageContext.request.contextPath}/admin/addCashbook/add/${currentYear}/${currentMonth}/${currentDay}">수입/지출 입력</a>
 	<table border="1" class="table table-hover table-striped">
 		<thead>
 			<tr>

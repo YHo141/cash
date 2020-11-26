@@ -10,6 +10,8 @@
 <link href="${path}/resources/css/calendar.css" type="text/css" media="all" rel="stylesheet">
 <style type="text/css">
 	.sunday {color: red}
+	.in {color: #53FF4C}
+	.out {color: #FF5A5A}
 </style>
 </head>
 <body>
@@ -17,7 +19,7 @@
 <div class="col"></div>
 <div class="col-10">
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
-	<h3>목록</h3>
+	<h1>Cashbook</h1>
 	
 	<!-- 다이어리 -->	
 	<div>
@@ -65,10 +67,10 @@
 								<c:forEach var="c" items="${cashList}">
 									<c:if test="${i-(firstDayOfWeek-1) == c.dday}">
 										<c:if test="${c.cashbookKind == '수입'}">
-											<div>수입 : ${c.cashPrice}</div>
+											<div class = "in">수입 : ${c.cashPrice}</div>
 										</c:if>
 										<c:if test="${c.cashbookKind == '지출'}">
-											<div>지출 : ${c.cashPrice}</div>
+											<div class= "out">지출 : ${c.cashPrice}</div>
 										</c:if>
 									</c:if>
 								</c:forEach>

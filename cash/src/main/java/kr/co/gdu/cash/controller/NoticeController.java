@@ -90,10 +90,10 @@ public class NoticeController {
 	
 	// 공지 수정 액션
 	@PostMapping("/admin/modifyNotice/{noticeId}")
-	public String modifyNotice(Notice notice) {
+	public String modifyNotice(NoticeForm noticeForm) {
 		
-		noticeService.updateNoticeOne(notice);
+		noticeService.updateNoticeOne(noticeForm);
 		
-		return "redirect:/admin/noticeOne/"+notice.getNoticeId();
+		return "redirect:/admin/noticeOne/"+noticeForm.getNoticeId();
 	}
 }
